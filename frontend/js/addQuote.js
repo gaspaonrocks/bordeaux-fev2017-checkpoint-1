@@ -10,18 +10,15 @@ function postNewQuote() {
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                var quote = createQuote();
-                alert("Thank you !");
-                return quote;
-            } else {
-                alert('POST: Une erreur s’est produite.');
-            }
+            alert("Thank you !");
         }
     };
 
     xhr.open('POST', 'http://localhost:3000/articles');
-    var jsonQuote = JSON.stringify(quote);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+    var jsonQuote = JSON.stringify(createQuote());
+    console.log(jsonQuote);
+
     xhr.send(jsonQuote);
 
 }
